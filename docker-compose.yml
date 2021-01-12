@@ -1,0 +1,40 @@
+version: "3"
+services:
+  hellworld:
+    container_name: hellworld
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command:
+      - sh
+      - "-c"
+      - |
+        jd_seckill login && jd_seckill seckill
+    restart: always
+    image: hellworld:latest
+    # TODO: 暂不支持环境变量
+    environment:
+      - JD_SECKILL_EID="ILZH6E7S6KPLLPME4OOxOSSZDEJB4U3ExJGYUBTSFPXGKNO6M7WXVQTXJEMYE7KJOEVDNCJOPVHY4EPXY4F4HSBJQAY"
+      - JD_SECKILL_FP="97791b1fX806dccx356f54fb6adX0eb3"
+      - JD_SECKILL_SKU_ID=100012043978
+      - JD_SECKILL_SECKILL_NUM=2
+      - JD_SECKILL_BUY_TIME="2021-01-01 09:59:59"
+      - JD_SECKILL_SECKILL_TIME="2"
+      - JD_SECKILL_TASK_NUM=5
+      - JD_SECKILL_TICKER_TIME=1500
+      - JD_SECKILL_DEFAULT_USER_AGENT="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36"
+      - JD_SECKILL_PAYMENT_PWD=""
+      - JD_SECKILL_NOTIFY_ENABLE=false
+      - JD_SECKILL_NOTIFY_TYPE="none"
+      - JD_SECKILL_RECEIVE_EMAIL=""
+      - JD_SECKILL_SERVER_CHAN_SCKEY=""
+      - JD_SECKILL_EMAIL_HOST=""
+      - JD_SECKILL_EMAIL_PORT=""
+      - JD_SECKILL_EMAIL_USER=""
+      - JD_SECKILL_EMAIL_PWD=""
+      - JD_SECKILL_DTALK_TOKEN=""
+      - JD_SECKILL_DTALK_SECRET=""
+    volumes:
+      - ./logs:/app/logs
+      - ./conf.ini:/app/conf.ini:rw
+    network_mode: host
